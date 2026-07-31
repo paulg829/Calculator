@@ -63,13 +63,15 @@ function operate(operator,a,b){
 
 }
 
-let firstNumber = "";
+let firstNumber = null;
 
-let secondNumber = "";
+let secondNumber = null;
 
-let operator = null;
+let currentOperator = null;
 
 let currentDisplay = "";
+
+let shouldResetDisplay = false;
 
 const display =
 document.querySelector("#display");
@@ -82,17 +84,136 @@ document.querySelectorAll(".number");
 const operators =
 document.querySelectorAll(".operator");
 
+const equals = document.querySelector("#equals");
+
+const clear = document.querySelector("#clear");
+
+
 numbers.forEach(button => {
 
+    button.addEventListener("click", () => {
 
-button.addEventListener("click",()=>{
+
+        if (shouldResetDisplay) {
+
+            display.textContent = "";
+
+            shouldResetDisplay = false;
+
+        }
 
 
-display.textContent += button.textContent;
+        display.textContent += button.textContent;
+
+
+    });
+
+});
+
+
+operators.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+
+        if (display.textContent === "") {
+
+            return;
+
+        }
+
+
+        if (firstNumber !== null && currentOperator !== null) {
+
+
+            secondNumber = Number(display.textContent);
+
+
+            let result = operate(
+                currentOperator,
+                firstNumber,
+                secondNumber
+            );
+
+
+            display.textContent = result;
+
+
+            firstNumber = result;
+
+
+        }
+
+        else {
+
+            firstNumber = Number(display.textContent);
+
+        }
+
+
+        currentOperator = button.textContent;
+
+
+        shouldResetDisplay = true;
+
+
+    });
+
+});
+
+
+equals.addEventListener("click", () => {
+
+
+    if (
+        firstNumber === null ||
+        currentOperator === null ||
+        display.textContent === ""
+    ) {
+
+        return;
+
+    }
+
+
+    secondNumber = Number(display.textContent);
+
+
+    let result = operate(
+        currentOperator,
+        firstNumber,
+        secondNumber
+    );
+
+
+    display.textContent = Math.round(result * 100000) / 100000;
+
+
+    firstNumber = null;
+
+    secondNumber = null;
+
+    currentOperator = null;
+
+
+    shouldResetDisplay = true;
 
 
 });
 
 
-});
+clear.addEventListener("click", () => {
 
+
+    display.textContent = "";
+
+    firstNumber = null;
+
+    secondNumber = null;
+
+    currentOperator = null;
+
+    shouldResetDisplay = null;
+
+
+});
