@@ -88,10 +88,33 @@ const equals = document.querySelector("#equals");
 
 const clear = document.querySelector("#clear");
 
+const backspace = document.querySelector("#backspace");
+
+
+backspace.addEventListener("click", () => {
+
+
+    display.textContent =
+    display.textContent.slice(0,-1);
+
+
+});
+
 
 numbers.forEach(button => {
 
     button.addEventListener("click", () => {
+        
+        if (button.textContent === ".") {
+
+
+            if (display.textContent.includes(".")) {
+
+                return;
+
+            }
+
+        }
 
 
         if (shouldResetDisplay) {
@@ -214,6 +237,50 @@ clear.addEventListener("click", () => {
     currentOperator = null;
 
     shouldResetDisplay = null;
+
+
+});
+
+document.addEventListener("keydown", (event)=>{
+
+
+    const key = event.key;
+
+
+    if (
+        key >= "0" &&
+        key <= "9"
+    ) {
+
+        display.textContent += key;
+
+    }
+
+
+    if (
+        key === "+" ||
+        key === "-" ||
+        key === "*" ||
+        key === "/"
+    ) {
+
+        document
+        .querySelector(`[class="operator"]`)
+    }
+
+
+    if(key === "Enter") {
+
+        equals.click();
+
+    }
+
+
+    if(key === "Backspace") {
+
+        backspace.click();
+
+    }
 
 
 });
