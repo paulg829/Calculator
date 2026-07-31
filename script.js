@@ -62,3 +62,37 @@ function operate(operator,a,b){
     }
 
 }
+
+let firstNumber = "";
+
+let secondNumber = "";
+
+let operator = null;
+
+let currentDisplay = "";
+
+const display =
+document.querySelector("#display");
+
+
+const numbers =
+document.querySelectorAll(".number");
+
+
+const operators =
+document.querySelectorAll(".operator");
+
+numbers.forEach(button => {
+
+
+button.addEventListener("click",()=>{
+
+
+display.textContent += button.textContent;
+
+
+});
+
+
+});
+
