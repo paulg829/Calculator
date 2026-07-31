@@ -1,0 +1,53 @@
+body {
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+}
+
+
+.calculator {
+
+    width:400px;
+
+}
+
+
+#display {
+
+    height:80px;
+
+    background:black;
+
+    color:white;
+
+    font-size:40px;
+
+    text-align:right;
+
+    padding:20px;
+
+}
+
+
+.buttons {
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+}
+
+
+button {
+
+    height:70px;
+
+    font-size:25px;
+
+}
