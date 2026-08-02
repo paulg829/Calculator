@@ -1,6 +1,6 @@
 Interactive calculator displaying state management and event handling.
 
-##Screenshot
+## Screenshot
 
 
-[Calculator screenshot](image.png)
+![Calculator screenshot](image.png)
